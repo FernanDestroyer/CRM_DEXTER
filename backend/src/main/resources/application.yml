@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: crm-dexter-backend
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/crm_dexter}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:Kevin20##}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  mail:
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:aairafernandez@gmail.com}
+    password: ${MAIL_PASSWORD:Vitu@l25}
+
+server:
+  port: ${SERVER_PORT:8080}
+  error:
+    include-message: always
+
+app:
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  jwt:
+    secret: hWECRrGIJQckGPfyEqGxesnfYlEz71nw5Ci14VEqLGt
+    expiration-ms: 86400000
+  otp:
+    expiration-seconds: ${OTP_EXPIRATION_SECONDS:300}
