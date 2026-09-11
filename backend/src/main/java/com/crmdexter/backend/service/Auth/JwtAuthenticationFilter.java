@@ -26,8 +26,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader("Authorization");
-        if (header != null && header.startsWith("Bearer ")) {
-            String token = header.substring(7);
+        String token = header != null && header.startsWith("Bearer ") ? header.substring(7)
+            : request.getCookies() == null ? null : java.util.Arrays.stream(request.getCookies())
+                .filter(cookie -> "crm_dexter_token".equals(cookie.getName()))
+                .map(jakarta.servlet.http.Cookie::getValue).findFirst().orElse(null);
+        if (token != null) {
             if (jwtService.isValid(token)) {
                 String subject = jwtService.extractSubject(token);
                 var authentication = new UsernamePasswordAuthenticationToken(subject, null, Collections.emptyList());

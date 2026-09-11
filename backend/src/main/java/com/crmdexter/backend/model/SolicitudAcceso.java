@@ -59,4 +59,16 @@ public class SolicitudAcceso {
     public void setNotificacionLeida(boolean notificacionLeida) { this.notificacionLeida = notificacionLeida; }
     public int getIntentosOtp() { return intentosOtp; }
     public void setIntentosOtp(int intentosOtp) { this.intentosOtp = intentosOtp; }
+    public UUID getId() { return id; }
+    public UUID getAprobadoPor() { return aprobadoPor; }
+    public LocalDateTime getDecididoEn() { return decididoEn; }
+    public String getMotivoRechazo() { return motivoRechazo; }
+    public String getOtpHash() { return otpHash; }
+    public LocalDateTime getOtpExpiraEn() { return otpExpiraEn; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setAprobadoPor(UUID aprobadoPor) { this.aprobadoPor = aprobadoPor; }
+    public void setDecididoEn(LocalDateTime decididoEn) { this.decididoEn = decididoEn; }
+    public void setMotivoRechazo(String motivoRechazo) { this.motivoRechazo = motivoRechazo; }
+    public void setOtpHash(String otpHash) { this.otpHash = otpHash; }
+    public void setOtpExpiraEn(LocalDateTime otpExpiraEn) { this.otpExpiraEn = otpExpiraEn; }
 }

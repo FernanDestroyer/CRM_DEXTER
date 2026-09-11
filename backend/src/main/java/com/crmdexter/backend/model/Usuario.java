@@ -27,9 +27,21 @@ public class Usuario {
     @Column(nullable = false, length = 40) private String rol = "ANALISTA";
     @Column(nullable = false, length = 20) private String estado = "ACTIVO";
     @Column(name = "ultimo_acceso") private LocalDateTime ultimoAcceso;
-    protected Usuario() {}
+    public Usuario() {}
 
     public UUID getId() { return id; }
     public UUID getOrganizacionId() { return organizacionId; }
     public String getEmail() { return email; }
+    public String getNombre() { return nombre; }
+    public String getRol() { return rol; }
+    public String getEstado() { return estado; }
+    public LocalDateTime getUltimoAcceso() { return ultimoAcceso; }
+
+    public void setOrganizacionId(UUID organizacionId) { this.organizacionId = organizacionId; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setEmail(String email) { this.email = email; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
+    public void setRol(String rol) { this.rol = rol; }
+    public void setEstado(String estado) { this.estado = estado; }
+    public void setUltimoAcceso(LocalDateTime ultimoAcceso) { this.ultimoAcceso = ultimoAcceso; }
 }

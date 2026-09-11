@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import java.util.List;
 
 public interface SolicitudAccesoRepository extends JpaRepository<SolicitudAcceso, UUID> {
 
@@ -12,9 +13,11 @@ public interface SolicitudAccesoRepository extends JpaRepository<SolicitudAcceso
     
     Optional<SolicitudAcceso> findTopByEmailSolicitanteOrderByCreatedAtDesc(String emailSolicitante);
 
-    @Query(value=  "SELECT \n" + //
-                "\tCASE WHEN email= :email THEN 1 ELSE 0 END as EsAdmin\n" + //
-                "FROM usuarios;", nativeQuery = true)
-    int isAdmin(String email);
-}
+    List<SolicitudAcceso> findByEstadoOrderByCreatedAtAsc(String estado);
 
+    Optional<SolicitudAcceso> findTopByEmailSolicitanteIgnoreCaseOrderByCreatedAtDesc(String emailSolicitante);
+
+    @Query("SELECT COUNT(u) FROM Usuario u WHERE LOWER(u.email) = LOWER(:email) " +
+           "AND UPPER(u.rol) = 'ADMINISTRADOR' AND UPPER(u.estado) = 'ACTIVO'")
+    long countActiveAdministratorsByEmail(String email);
+}

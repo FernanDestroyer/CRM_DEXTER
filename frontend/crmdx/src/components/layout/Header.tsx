@@ -3,7 +3,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FileDown, LogOut, Building2, CheckCircle2, Circle } from 'lucide-react';
 import { APP_ROUTES } from '@/router/routes';
-import { mockUsuario, mockEmpresa, mockProyectos } from '@/services/mockData';
+import { useAuth } from '@/context/AuthContext';
+import { useProjects } from '@/context/ProjectContext';
 
 const stages = [
   { name: 'Carga', to: APP_ROUTES.DATASETS, completed: true },
@@ -14,9 +15,11 @@ const stages = [
 
 export const Header: React.FC = () => {
   const navigate = useNavigate();
-  const activeProject = mockProyectos[0];
+  const { user, logout } = useAuth();
+  const { activeProject } = useProjects();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await logout();
     navigate('/');
   };
 
@@ -27,7 +30,7 @@ export const Header: React.FC = () => {
         <div className="flex items-center space-x-2 text-sm">
           <div className="flex items-center gap-1.5 text-slate-500 font-medium">
             <Building2 className="w-4 h-4 text-slate-400" />
-            <span className="truncate max-w-[140px]">{mockEmpresa.nombre}</span>
+            <span className="truncate max-w-[140px]">CRM Dexter</span>
           </div>
           <span className="text-slate-300">/</span>
           {activeProject ? (
@@ -83,9 +86,9 @@ export const Header: React.FC = () => {
 
         <div className="flex items-center space-x-2">
           <div className="text-right hidden sm:block">
-            <p className="text-xs font-medium text-slate-900 leading-none">{mockUsuario.nombre}</p>
+            <p className="text-xs font-medium text-slate-900 leading-none">{user?.nombre}</p>
             <p className="text-[10px] text-slate-500 capitalize leading-tight mt-0.5">
-              {mockUsuario.rol.replace('_', ' ')}
+              {user?.rol.replace('_', ' ')}
             </p>
           </div>
 

@@ -1,6 +1,7 @@
 // src/router/AppRouter.tsx
 import { Navigate } from 'react-router-dom';
 import AppLayout from '@/components/layout/AppLayout';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
 import LoginPage from '@/pages/LoginPage';
 import ProjectsPage from '@/pages/Projects/ProjectsPage';
@@ -40,9 +41,10 @@ export const routes = [
   },
   {
     path: ROUTES.APP.ROOT,
-    element: <AppLayout />,
+    element: <ProtectedRoute />,
     children: [
-      { index: true, element: <Navigate to="proyectos" replace /> },
+      { element: <AppLayout />, children: [
+        { index: true, element: <Navigate to="proyectos" replace /> },
       { path: 'proyectos', element: <ProjectsPage /> },
       { path: 'datasets', element: <DatasetsPage /> },
       { path: 'mapeo', element: <MappingPage /> },
@@ -52,7 +54,8 @@ export const routes = [
       { path: 'oportunidades', element: <OpportunitiesPage /> },
       { path: 'modulos-operativos', element: <ModulesPage /> },
       { path: 'usuarios', element: <TeamPage /> },
-      { path: 'auditoria', element: <AuditPage /> },
+        { path: 'auditoria', element: <AuditPage /> },
+      ] },
     ],
   },
   {

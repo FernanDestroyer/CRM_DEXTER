@@ -23,3 +23,27 @@ export interface LoginCredentials {
   email: string;
   password: string;
 }
+
+export type AuthResponseStatus = 'AUTHENTICATED' | 'PENDING' | 'OTP_REQUIRED' | 'REJECTED';
+
+export interface LoginResponse {
+  message: string;
+  rol: string;
+  token?: string | null;
+  status: AuthResponseStatus;
+}
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  nombre: string;
+  rol: string;
+  estado: string;
+}
+
+export interface AccessRequest {
+  id: string;
+  email: string;
+  estado: string;
+  creadoEn: string;
+}

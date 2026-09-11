@@ -1,0 +1,21 @@
+# Backend build output
+backend/target/
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/crmdx/node_modules/
+frontend/crmdx/dist/
+frontend/package-lock.json
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# IDE and OS files
+.idea/
+.vscode/
+*.class
+*.log
+Thumbs.db
+.DS_Store
