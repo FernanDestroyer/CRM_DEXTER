@@ -12,6 +12,10 @@ frontend/package-lock.json
 .env.*
 !.env.example
 
+# Local project notes
+CONTEXTO_PARA_IA.md
+REGISTRO_CAMBIOS_AUTENTICACION.md
+
 # IDE and OS files
 .idea/
 .vscode/
