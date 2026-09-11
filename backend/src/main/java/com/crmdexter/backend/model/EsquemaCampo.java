@@ -26,4 +26,9 @@ public class EsquemaCampo {
     @Column(name = "es_obligatorio", nullable = false) private boolean esObligatorio;
     @Column(nullable = false) private int posicion;
     protected EsquemaCampo() {}
+
+    public UUID getId() { return id; }
+    public UUID getEsquemaId() { return esquemaId; }
+    public String getNombreCanonico() { return nombreCanonico; }
+    public String getEtiqueta() { return etiqueta; }
 }

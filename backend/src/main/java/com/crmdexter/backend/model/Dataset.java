@@ -30,4 +30,32 @@ public class Dataset {
     @Column(nullable = false, length = 30) private String estado = "RECIBIDO";
     @CreationTimestamp @Column(name = "fecha_carga", nullable = false, updatable = false) private LocalDateTime fechaCarga;
     protected Dataset() {}
+
+    public Dataset(UUID proyectoId, UUID fuenteId, String nombreOriginal, String nombreAlmacenado,
+                    String rutaArchivo, String hashArchivo, String formato, long tamanoBytes,
+                    long filasDetectadas, String estado) {
+        this.proyectoId = proyectoId;
+        this.fuenteId = fuenteId;
+        this.nombreOriginal = nombreOriginal;
+        this.nombreAlmacenado = nombreAlmacenado;
+        this.rutaArchivo = rutaArchivo;
+        this.hashArchivo = hashArchivo;
+        this.formato = formato;
+        this.tamanoBytes = tamanoBytes;
+        this.filasDetectadas = filasDetectadas;
+        this.estado = estado;
+    }
+
+    public UUID getId() { return id; }
+    public UUID getProyectoId() { return proyectoId; }
+    public UUID getFuenteId() { return fuenteId; }
+    public String getNombreOriginal() { return nombreOriginal; }
+    public String getNombreAlmacenado() { return nombreAlmacenado; }
+    public String getRutaArchivo() { return rutaArchivo; }
+    public String getHashArchivo() { return hashArchivo; }
+    public String getFormato() { return formato; }
+    public long getTamanoBytes() { return tamanoBytes; }
+    public long getFilasDetectadas() { return filasDetectadas; }
+    public String getEstado() { return estado; }
+    public LocalDateTime getFechaCarga() { return fechaCarga; }
 }

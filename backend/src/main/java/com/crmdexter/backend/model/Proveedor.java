@@ -24,4 +24,15 @@ public class Proveedor {
     @Column(length = 500) private String descripcion;
     @Column(nullable = false) private boolean activo = true;
     protected Proveedor() {}
+
+    public Proveedor(UUID organizacionId, String nombre, String codigo) {
+        this.organizacionId = organizacionId;
+        this.nombre = nombre;
+        this.codigo = codigo;
+    }
+
+    public UUID getId() { return id; }
+    public UUID getOrganizacionId() { return organizacionId; }
+    public String getNombre() { return nombre; }
+    public String getCodigo() { return codigo; }
 }

@@ -23,4 +23,10 @@ public class EsquemaCanonico {
     @Column(nullable = false) private int version = 1;
     @Column(nullable = false) private boolean activo = true;
     protected EsquemaCanonico() {}
+
+    public UUID getId() { return id; }
+    public UUID getProyectoId() { return proyectoId; }
+    public String getNombre() { return nombre; }
+    public int getVersion() { return version; }
+    public boolean isActivo() { return activo; }
 }

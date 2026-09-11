@@ -28,4 +28,8 @@ public class Usuario {
     @Column(nullable = false, length = 20) private String estado = "ACTIVO";
     @Column(name = "ultimo_acceso") private LocalDateTime ultimoAcceso;
     protected Usuario() {}
+
+    public UUID getId() { return id; }
+    public UUID getOrganizacionId() { return organizacionId; }
+    public String getEmail() { return email; }
 }

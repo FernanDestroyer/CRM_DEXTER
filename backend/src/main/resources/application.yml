@@ -13,6 +13,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
   mail:
     host: ${MAIL_HOST:localhost}
     port: ${MAIL_PORT:1025}
@@ -26,6 +30,8 @@ server:
 
 app:
   frontend-url: ${FRONTEND_URL:http://localhost:5173}
+  storage:
+    uploads-dir: ${UPLOADS_DIR:./uploads}
   jwt:
     secret: hWECRrGIJQckGPfyEqGxesnfYlEz71nw5Ci14VEqLGt
     expiration-ms: 86400000

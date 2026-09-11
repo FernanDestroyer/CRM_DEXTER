@@ -25,4 +25,8 @@ public class Dashboard {
     @Column(length = 500) private String descripcion;
     @Column(nullable = false) private boolean activo = true;
     protected Dashboard() {}
+
+    public UUID getId() { return id; }
+    public UUID getProyectoId() { return proyectoId; }
+    public String getNombre() { return nombre; }
 }

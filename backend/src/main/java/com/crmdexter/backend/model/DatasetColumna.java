@@ -30,4 +30,29 @@ public class DatasetColumna {
     @JdbcTypeCode(SqlTypes.JSON) @Column(name = "estadisticas_json", columnDefinition = "json") private Map<String, Object> estadisticasJson;
     @CreationTimestamp @Column(name = "created_at", nullable = false, updatable = false) private LocalDateTime createdAt;
     protected DatasetColumna() {}
+
+    public DatasetColumna(UUID datasetId, String nombreOriginal, String nombreNormalizado, String tipoDetectado,
+                           int posicion, long totalNulos, long totalUnicos, BigDecimal porcentajeNulos,
+                           String ejemploValor) {
+        this.datasetId = datasetId;
+        this.nombreOriginal = nombreOriginal;
+        this.nombreNormalizado = nombreNormalizado;
+        this.tipoDetectado = tipoDetectado;
+        this.posicion = posicion;
+        this.totalNulos = totalNulos;
+        this.totalUnicos = totalUnicos;
+        this.porcentajeNulos = porcentajeNulos;
+        this.ejemploValor = ejemploValor;
+    }
+
+    public UUID getId() { return id; }
+    public UUID getDatasetId() { return datasetId; }
+    public String getNombreOriginal() { return nombreOriginal; }
+    public String getNombreNormalizado() { return nombreNormalizado; }
+    public String getTipoDetectado() { return tipoDetectado; }
+    public int getPosicion() { return posicion; }
+    public long getTotalNulos() { return totalNulos; }
+    public long getTotalUnicos() { return totalUnicos; }
+    public BigDecimal getPorcentajeNulos() { return porcentajeNulos; }
+    public String getEjemploValor() { return ejemploValor; }
 }

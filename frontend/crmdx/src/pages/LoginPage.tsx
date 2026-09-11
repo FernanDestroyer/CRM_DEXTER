@@ -3,17 +3,33 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Database, CheckCircle2, Mail, ShieldCheck } from 'lucide-react';
 import { APP_ROUTES } from '@/router/routes';
+import { apiClient } from '@/services/api.config';
 
 const stages = ['Carga', 'Mapeo', 'Fusión', 'Dashboard'];
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Sin lógica de autenticación real todavía: navega directo al panel.
-    navigate(APP_ROUTES.PROYECTOS);
+    setIsLoading(true);
+    setError('');
+    try {
+      const { data } = await apiClient.post<{ token?: string; message: string }>('/auth/login', { email });
+      if (!data.token) {
+        setError(data.message || 'Tu correo todavía no tiene acceso aprobado.');
+        return;
+      }
+      localStorage.setItem('crm_dexter_token', data.token);
+      navigate(APP_ROUTES.PROYECTOS);
+    } catch {
+      setError('No se pudo conectar con el backend. Verifica que esté ejecutándose.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -103,12 +119,14 @@ export default function LoginPage() {
               <div className="text-xs text-slate-400 mb-6 mt-1.5">
                 Ingresa tu correo para continuar al panel.
               </div>
+              {error && <div className="text-xs text-rose-600 bg-rose-50 border border-rose-200 rounded-lg p-2 mb-4">{error}</div>}
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold rounded-lg shadow-sm shadow-sky-600/20 transition-colors"
+                disabled={isLoading || !email}
+                className="w-full flex items-center justify-center px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold rounded-lg shadow-sm shadow-sky-600/20 transition-colors disabled:opacity-50"
               >
-                Ingresar
+                {isLoading ? 'Ingresando...' : 'Ingresar'}
               </button>
             </form>
           </div>

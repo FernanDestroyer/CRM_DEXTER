@@ -27,4 +27,10 @@ public class MapeoColumna {
     @Column(name = "es_confirmado", nullable = false) private boolean esConfirmado;
     @JdbcTypeCode(SqlTypes.BINARY) @Column(name = "confirmado_por", columnDefinition = "BINARY(16)") private UUID confirmadoPor;
     protected MapeoColumna() {}
+
+    public UUID getId() { return id; }
+    public UUID getDatasetColumnaId() { return datasetColumnaId; }
+    public UUID getEsquemaCampoId() { return esquemaCampoId; }
+    public String getEstado() { return estado; }
+    public boolean isEsConfirmado() { return esConfirmado; }
 }

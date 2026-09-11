@@ -13,7 +13,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
-@Entity @Table(name = "proyectos")
+@Entity
+@Table(name = "proyectos")
 public class Proyecto {
     @Id @GeneratedValue(strategy = GenerationType.UUID) @JdbcTypeCode(SqlTypes.BINARY) @Column(name = "id", columnDefinition = "BINARY(16)") private UUID id;
     @CreationTimestamp @Column(name = "created_at", nullable = false, updatable = false) private LocalDateTime createdAt;
@@ -25,5 +26,23 @@ public class Proyecto {
     @Column(length = 1000) private String descripcion;
     @Column(name = "tipo_dato", nullable = false, length = 40) private String tipoDato;
     @Column(nullable = false, length = 30) private String estado = "CREADO";
+
     protected Proyecto() {}
+
+    public Proyecto(UUID organizacionId, UUID createdBy, String nombre, String descripcion, String tipoDato) {
+        this.organizacionId = organizacionId;
+        this.createdBy = createdBy;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.tipoDato = tipoDato;
+    }
+
+    public UUID getId() { return id; }
+    public UUID getCreatedBy() { return createdBy; }
+    public String getNombre() { return nombre; }
+    public String getDescripcion() { return descripcion; }
+    public String getTipoDato() { return tipoDato; }
+    public String getEstado() { return estado; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public LocalDateTime getUpdatedAt() { return updatedAt; }
 }

@@ -25,4 +25,20 @@ public class FuenteDato {
     @Column(name = "tipo_fuente", nullable = false, length = 30) private String tipoFuente = "CSV";
     @Column(length = 500) private String descripcion;
     protected FuenteDato() {}
+
+    public FuenteDato(UUID proyectoId, UUID proveedorId, String nombre, String codigo, String tipoFuente) {
+        this.proyectoId = proyectoId;
+        this.proveedorId = proveedorId;
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.tipoFuente = tipoFuente;
+    }
+
+    public UUID getId() { return id; }
+    public UUID getProyectoId() { return proyectoId; }
+    public UUID getProveedorId() { return proveedorId; }
+    public String getNombre() { return nombre; }
+    public String getCodigo() { return codigo; }
+    public String getTipoFuente() { return tipoFuente; }
+    public String getDescripcion() { return descripcion; }
 }

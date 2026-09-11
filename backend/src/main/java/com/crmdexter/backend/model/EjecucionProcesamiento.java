@@ -24,4 +24,22 @@ public class EjecucionProcesamiento {
     @Column(name = "mensaje_error", columnDefinition = "TEXT") private String mensajeError;
     @CreationTimestamp @Column(name = "created_at", nullable = false, updatable = false) private LocalDateTime createdAt;
     protected EjecucionProcesamiento() {}
+
+    public EjecucionProcesamiento(UUID proyectoId, UUID ejecutadoPor, String tipoEjecucion) {
+        this.proyectoId = proyectoId;
+        this.ejecutadoPor = ejecutadoPor;
+        this.tipoEjecucion = tipoEjecucion;
+    }
+
+    public UUID getId() { return id; }
+    public UUID getProyectoId() { return proyectoId; }
+    public UUID getEjecutadoPor() { return ejecutadoPor; }
+    public String getTipoEjecucion() { return tipoEjecucion; }
+    public String getEstado() { return estado; }
+    public long getFilasEntrada() { return filasEntrada; }
+    public long getFilasSalida() { return filasSalida; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setEstado(String estado) { this.estado = estado; }
+    public void setFilasEntrada(long filasEntrada) { this.filasEntrada = filasEntrada; }
+    public void setFilasSalida(long filasSalida) { this.filasSalida = filasSalida; }
 }
